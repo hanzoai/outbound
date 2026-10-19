@@ -1,0 +1,12 @@
+# Canonical CI/CD config for hanzoai/outbound — read by the hanzoai/ci reusable
+# (.github/workflows/cicd.yml) and by platform.hanzo.ai.
+#
+# A Go library: it ships from a tag as a module and builds no image, so there is
+# no `images:` and no `deploy:`. The gate is the two things that can be wrong —
+# it does not compile, or a refusal its tests pin stops refusing.
+
+test:
+  - name: vet
+    run: go vet ./...
+  - name: test
+    run: go test -count=1 ./...
